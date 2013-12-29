@@ -1,23 +1,23 @@
 Meteor.startup(function () {
   if(blogPosts.find({}).count() == 0){
-    tags.insert({tag: "automated"}, function(err, tag){
+    tags.insert({tag: "automatico"}, function(err, tag){
       if(err){
         console.log(err);
       }else{
         comments.insert({
-          comment: "hello world!",
-          author: "robot commenter",
+          comment: "hola mundo!",
+          author: "robot comentador",
           pubdate: new Date()
         }, function(err, _id){
           if(err){
             console.log(err);
           }else{
             blogPosts.insert({
-              title: "Welcome to Skybro",
-              body: "This is a sample blog post set up by the Skybro server. Delete this post and start blogging!",
-              author: "The Skybro Robot",
+              title: "Bienvenido a Cocina Buena",
+              body: "Este es un mensaje de ejemplo grabado por el servidor de Cocina Buena. Elimine este mensaje y comienze a comentar!",
+              author: "El Robot de Cocina Buena",
               pubdate: new Date(),
-              tags: ["automated"],
+              tags: ["automatico"],
               removeable: true,
               comments: [_id]
             });

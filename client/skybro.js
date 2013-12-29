@@ -9,7 +9,7 @@ Meteor.autosubscribe(function () {
 });
 
 Deps.autorun(function () {
-document.title = Session.get("pageTitle") + " | Skybro";
+document.title = Session.get("pageTitle") + " | Cocina Buena";
 });
 
 Session.set("searchQuery", "");
@@ -31,17 +31,17 @@ Accounts.ui.config({passwordSignupFields: 'USERNAME_ONLY'});
 
 Template.blogPosts.ready = function(){
 	return Session.get('postsLoaded');
-}
+};
 
 Template.editPost.rendered = function(){
 	if(Session.equals("reRender", true)){
 		$('#wysihtml5-textarea').wysihtml5();
 	}
-}
+};
 
 Template.blogPosts.more = function(){
 	return Session.get("morePosts");
-}
+};
 
 Template.navbar.events({
 	'click #newPost': function(e){
@@ -87,7 +87,7 @@ Template.editPost.events({
 			post.pubdate = new Date();
 			$('select#tags option:selected').each(function(i){
 				post.tags[i] = $(this).val();
-			})
+			});
 			if(Session.get("editing_post")){
 				var _id = Session.get("editing_post")._id;
 				blogPosts.update({_id: _id}, {$set: post});
@@ -102,11 +102,11 @@ Template.editPost.events({
 			Session.set("addingTag", false);
 			}else{
 				Session.set("reRender", false);
-				$('.postError').html(Meteor.render(Template.error({Error: "Post body may not be blank"})));
+				$('.postError').html(Meteor.render(Template.error({Error: "El contenido del Comentario no puede estar vacio"})));
 			}
 		}else{
 			Session.set("reRender", false);
-			$('.postError').html(Meteor.render(Template.error({Error: "Title may not be blank"})));
+			$('.postError').html(Meteor.render(Template.error({Error: "El Titulo no puede estar vacio"})));
 		}
 	}
 });
@@ -152,11 +152,11 @@ Template.onePost.theComments = function(){
 	if(Template.onePost.post()){
 	return comments.find({_id: {$in: Template.onePost.post().comments}});
 	}
-}
+};
 
 Template.onePost.editComment = function(){
 	return Session.get("editingComment");
-}
+};
 
 Template.onePost.events({
 	'click a.comment': function(e){
@@ -184,7 +184,7 @@ Template.onePost.events({
 			Session.set("postingComment", false);
 		}else{
 			Session.set("reRender", false);
-			$('.commentError').html(Meteor.render(Template.error({Error: "Comment may not be blank"})));
+			$('.commentError').html(Meteor.render(Template.error({Error: "El Comentario no puede estar vacio"})));
 		}
 	},
 	'click a.deleteComment': function(e){
@@ -205,11 +205,11 @@ Template.navbar.loggedIn = function(){
 	}else{
 		return false;
 	}
-}
+};
 
 Template.footer.selectedTags = function(){
 	return Session.get("selectedTags");
-}
+};
 
 Template.blogPosts.userMatch = function(user){
 	if(Meteor.user()){
@@ -219,7 +219,7 @@ Template.blogPosts.userMatch = function(user){
 		return false;
 	}
 }
-}
+};
 
 var commentCount = function(comments){
 	if(comments.length == 1){
@@ -227,15 +227,15 @@ var commentCount = function(comments){
 	}else{
 		return comments.length + " Comments";
 	}
-}
+};
 
 Template.blogPosts.numComments = function(comments){
 	return commentCount(comments);
-}
+};
 
 Template.onePost.numComments = function(comments){
 	return commentCount(comments);
-}
+};
 
 Template.onePost.userMatch = function(user){
 	if(Meteor.user()){
@@ -245,11 +245,11 @@ Template.onePost.userMatch = function(user){
 		return false;
 	}
 }
-}
+};
 
 Template.onePost.loggedIn = function(){
 	return Meteor.user()
-}
+};
 
 Template.blogPosts.posts = function(){
 	searchExp = new RegExp(".*" + Session.get("searchQuery") + ".*", "i");
@@ -271,19 +271,19 @@ Template.blogPosts.posts = function(){
 		Session.set("morePosts", true);
 	}
 	return posts;
-}
+};
 
 Template.blogPosts.noResults = function(){
 	return Session.get("noResults");
-}
+};
 
 Template.editPost.clickedEdit = function(){
 	return Session.get("clickedEdit");
-}
+};
 
 Template.editPost.addingTag = function(){
 	return Session.get("addingTag");
-}
+};
 
 Template.editPost.post = function(){
 	if(Session.equals("editing", true)){
@@ -291,7 +291,7 @@ Template.editPost.post = function(){
 	}else{
 		return null;
 	}
-}
+};
 
 Template.editPost.tags = function(){
 	var editTags = tags.find({});
@@ -305,7 +305,7 @@ Template.editPost.tags = function(){
 			}
 		}
 		return editTags;
-}
+};
 
 Meteor.Router.add({
    '/':function(){
@@ -313,7 +313,7 @@ Meteor.Router.add({
    		Session.set("clickedEdit", false);
    		Session.set("currentPost", undefined);
    		Session.set("viewingAbout", false);
-   		Session.set("pageTitle", "Home");
+   		Session.set("pageTitle", "Inicio");
    		return 'home';
    },
 
@@ -327,7 +327,7 @@ Meteor.Router.add({
   	Session.set("viewingAbout", true);
   	Session.set("home", false);
   	Session.set("currentPost", undefined);
-  	Session.set("pageTitle", "About");
+  	Session.set("pageTitle", "Info");
   	return 'about';
    }
 });
@@ -343,7 +343,7 @@ Template.onePost.post = function(){
 		}
 	}
 	return undefined;
-}
+};
 
 Template.navbar.currentPost = function(){
 	return blogPosts.findOne({_id: Session.get("currentPost")});
@@ -353,8 +353,8 @@ Template.navbar.viewingAbout = function(){
 }
 Template.navbar.home = function(){
 	return Session.get("home");
-}
+};
 
 Template.onePost.postingComment = function(){
 	return Session.get("postingComment");
-}
+};

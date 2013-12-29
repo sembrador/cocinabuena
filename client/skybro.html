@@ -1,7 +1,7 @@
 <head>
-  	<title>Skybro</title>
+  	<title>Cocina Buena</title>
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap-wysihtml5.css"></link>
+	<link rel="stylesheet" type="text/css" href="/public/css/bootstrap-wysihtml5.css"></link>
 	<script src="/js/wysihtml5-0.3.0.js"></script>
 	<script src="/js/bootstrap-wysihtml5.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Jura' rel='stylesheet' type='text/css'>
@@ -28,16 +28,16 @@
 
 <template name="about">
 	<div class="hero-unit">
-		<h1>Skybro</h1>
-		<h3>Features</h3>
-			<div class="span2 feature">Single-page (Browse the whole blog without ever loading a new page)</div>
-			<div class="span2 feature">Real-time (Changes anyone makes will show up everywhere instantly)</div>
-			<div class="span3 feature">WYSIWYG Editing (Create posts in rich text without having to know HTML or Markdown)</div>
-			<div class="span3 feature">Real-time searching (Search for posts containing a word or phrase without touching any buttons)</div>
-			<div class="span2 feature">Tag searching (Click on a tag to find all posts with that tag. You can also select multiple tags)</div>
+		<h1>Cocina Buena</h1>
+		<h3>Cualidades</h3>
+			<div class="span2 feature">Una-Pagina (Explorar todo el sitio sin tener que recargar una nueva página)</div>
+			<div class="span2 feature">Tiempo-Real (Los cambios que cualquiera realize se mostrarán en todas partes al instante)</div>
+			<div class="span3 feature">Edicion WYSIWYG (Creación de comentarios en RTF sin necesidad de saber HTML o Markdown)</div>
+			<div class="span3 feature">Busqueda en Tiempo-Real (Buscar comentarios que contengan una palabra o frase sin tocar ningún botón)</div>
+			<div class="span2 feature">Busqueda por Tag (Haga clic en una etiqueta para encontrar todos los mensajes con esa etiqueta. También puede seleccionar múltiples etiquetas)</div>
 		<div>
 		<a class="btn btn-primary btn-large" href="/">
-				Start
+				Comenzar
 			</a>
 			</div>
 	</div>
@@ -53,22 +53,22 @@
         <span class="icon-bar"></span>
       </a>
 
-      <a class="brand" href="#">Skybro</a>
+      <a class="brand" href="#">Cocina Buena</a>
 	    	<form class="navbar-search pull-right">
   				<input id="search" type="text" class="search-query" placeholder="Search">
 			</form>
 
 	  <div class="nav-collapse collapse">
 	    <ul class="nav">
-	      <li {{#if home}}class="active"{{/if}}><a href="/">Home</a></li>
+	      <li {{#if home}}class="active"{{/if}}><a href="/">Inicio</a></li>
 	      {{#if currentPost}}
 	      <li class="active"><a href="/posts/{{currentPost._id}}">{{currentPost.title}}</a></li>
 	      {{/if}}
 	      {{#if loggedIn}}
-	      <li><a id="newPost">New Post</a></li>
+	      <li><a id="newPost">Nuevo Comentario</a></li>
 	      {{/if}}
 	      <li><p class="navbar-text">{{loginButtons}}</p></li>
-	      <li {{#if viewingAbout}}class="active"{{/if}}><a href="/about">About</a></li>
+	      <li {{#if viewingAbout}}class="active"{{/if}}><a href="/about">Info</a></li>
 	    </ul>
 	    </div>
 	  </div>
@@ -84,30 +84,30 @@
 		</div>
 		<blockquote>
 		  <p class='body'>{{{body}}}</p>
-		  <small>Written by <span class="author">{{author}}</span> on <span class="date">{{pubdate}}<span></small>
+		  <small>Escrito por <span class="author">{{author}}</span> el <span class="date">{{pubdate}}<span></small>
 		</blockquote>
 		<div class="show-tags">
-  			Tagged: {{#each tags}} <a class="tagged">{{this}}</a> {{/each}}
+  			Etiquetado: {{#each tags}} <a class="tagged">{{this}}</a> {{/each}}
   			<p>{{numComments comments}}</p>
 		</div>
 		{{#if userMatch author}}
 		<div class="btn-group postbuttons" id="{{_id}}">
-			<a class="btn btn-small btn-inverse editPost">Edit</a>
-			<a class="btn btn-small btn-danger deletePost">Delete</a>
+			<a class="btn btn-small btn-inverse editPost">Editar</a>
+			<a class="btn btn-small btn-danger deletePost">Eliminar</a>
 		</div>
 		{{/if}}
 		{{#if removeable}}
 		<div class="btn-group postbuttons" id="{{_id}}">
-			<a class="btn btn-small btn-danger deletePost">Delete</a>
+			<a class="btn btn-small btn-danger deletePost">Eliminar</a>
 		</div>
 		{{/if}}
 	</div>
 	{{/each}}
 	{{#if noResults}}
-	<h3>Sorry, we didn't find any posts like that</h3>
+	<h3>No encontramos ninguna opinion como esta</h3>
 	{{else}}
 	{{#if more}}
-	<div><a class="btn btn-info morePosts">More</a></div>
+	<div><a class="btn btn-info morePosts">Mas</a></div>
 	{{/if}}
 	{{/if}}
 	{{else}}
@@ -122,43 +122,43 @@
 		</div>
 		<blockquote>
 		  <p class='lead body'>{{{post.body}}}</p>
-		  <small>Written by <span class="author">{{post.author}}</span> on <span class="date">{{post.pubdate}}<span></small>
+		  <small>Escrito por <span class="author">{{post.author}}</span> el <span class="date">{{post.pubdate}}<span></small>
 		</blockquote>
 		<div class="show-tags">
-  			Tagged: {{#each post.tags}} <a class="tagged">{{this}}</a> {{/each}}
+  			Etiquetado: {{#each post.tags}} <a class="tagged">{{this}}</a> {{/each}}
   			<p>{{numComments post.comments}}</p>
 		</div>
 		{{#if loggedIn}}
 		<div class="btn-group postbuttons" id="{{post._id}}">
 		{{#if userMatch post.author}}
-			<a class="btn btn-small btn-inverse editPost">Edit</a>
-			<a class="btn btn-small btn-danger deletePost">Delete</a>
+			<a class="btn btn-small btn-inverse editPost">Editar</a>
+			<a class="btn btn-small btn-danger deletePost">Eliminar</a>
 		{{/if}}
-		<a class="btn btn-small btn-info comment">Comment</a>
+		<a class="btn btn-small btn-info comment">Comentar</a>
 		</div>
 		{{/if}}
 		{{#if post.removeable}}
 		<div class="postbuttons btn-group" id="{{post._id}}">
-			<a class="btn btn-small btn-danger deletePost">Delete</a>
+			<a class="btn btn-small btn-danger deletePost">Eliminar</a>
 		</div>
 		{{/if}}
 		{{#if postingComment}}
 		<div class="postComment">
 			<a class="icon-remove closeComment exitComment" href="#">&times;</a>
-			<label class="control-label" for="comment">Write Comment</label>
-			<textarea id="comment" placeholder="Enter your comment..." autofocus>{{editComment}}</textarea>
-			<p><button class="btn btn-primary" id="submitComment">Post</button></p>
+			<label class="control-label" for="comment">Escribir Comentario</label>
+			<textarea id="comment" placeholder="Entre su comentario..." autofocus>{{editComment}}</textarea>
+			<p><button class="btn btn-primary" id="submitComment">Grabar</button></p>
 		</div>
 		<div class="commentError"></div>
 		<br></br>
 		{{/if}}
-		<h4 class="smallTitle">Comments</h4>
+		<h4 class="smallTitle">Comentarios</h4>
 		<div id="comments">
     	{{#each theComments}}
     	<div class="comment">
     		<blockquote id="{{_id}}">
 		  		<p>{{comment}}{{#if userMatch author}}<a class="editComment btn btn-small btn-info">Edit</a><a class="icon-remove closeComment deleteComment" href="#">&times;</a>{{/if}}</p>
-		  		<small>Written by <span class="author">{{author}}</span> on <span class="date">{{pubdate}}<span></small>
+		  		<small>Escrito por <span class="author">{{author}}</span> el <span class="date">{{pubdate}}<span></small>
 			</blockquote>
 		</div>
     	{{/each}}
@@ -174,27 +174,27 @@
 		<div class="control-group">
 		<label class="control-label" for="title">Title</label>
 			<div class="controls">
-				<input type="text" id="title" placeholder="Post title..." value="{{post.title}}">
+				<input type="text" id="title" placeholder="Titulo..." value="{{post.title}}">
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="wysihtml5-textarea">Post body</label>
+			<label class="control-label" for="wysihtml5-textarea">Contenido</label>
 			<div class="controls">
-			<textarea id="wysihtml5-textarea" class="save" placeholder="Enter your text ..." autofocus>{{post.body}}</textarea>
+			<textarea id="wysihtml5-textarea" class="save" placeholder="Escriba su texto ..." autofocus>{{post.body}}</textarea>
 			</div>
 		</div>
 		<div class="control-group">
 			<div class="controls">
-				<label class="control-label" for="tags">Select all tags that apply <small>(Hold down control to select multiple)</small></label>
+				<label class="control-label" for="tags">Seleccione todos los Tags que aplican <small>(Mantenga presionado Ctrl para seleccionar varios)</small></label>
 				<select id="tags" multiple>
 					{{#each tags}}
 					<option value={{tag}} {{#if selected}} selected {{/if}}>{{tag}}</option>
 					{{/each}}
 				</select>
-				<a class="btn btn-success addTag">Add a Tag <i class="icon-plus icon-white"></i></a>
+				<a class="btn btn-success addTag">Añadir un Tag <i class="icon-plus icon-white"></i></a>
 				{{#if addingTag}}
 				<div class="input-append">
-				<input id="newTag" type="text" placeholder="Name of your tag"></input>
+				<input id="newTag" type="text" placeholder="Nombre de su tag"></input>
 				<button class="btn btn-info createTag"><i class="icon-plus"></i></button>
 				</div>
 				{{/if}}
@@ -203,7 +203,7 @@
 		<div class="postError"></div>
 		<div class="control-group">
 			<div class="controls">
-				<button type="submit" class="btn btn-primary" id="submitPost">Post</button>
+				<button type="submit" class="btn btn-primary" id="submitPost">Grabar</button>
 			</div>
 		</div>
 	</form>
@@ -217,13 +217,12 @@
 	  <div class="navbar-inner">
         {{#if selectedTags}}
          <ul class="nav">
-	      <li><p class="navbar-text heading">Find by tags:   </p></li>
+	      <li><p class="navbar-text heading">Encontrar por Tags:   </p></li>
 	      {{#each selectedTags}}
 	      <li><span class="label label-info" id="{{this}}">{{this}} <a href="#" class="icon-remove icon-white deSelect"></a></span></li>
 	      {{/each}}
 	      {{/if}}
 	      </ul>
-	      <a class="brand madewith" href="http://meteor.com"><small>Made with Meteor</small></a>
 	  </div>
 	</div>
 </template>
@@ -252,8 +251,8 @@
 <template name="posts">
 	{{#each blogPosts}}
 	<div class="adminPost">
-		<p>Title: {{title}}</p>
-		<p>Body: {{body}}</p>
+		<p>Titulo: {{title}}</p>
+		<p>Contenido: {{body}}</p>
 		<p>
 		<p>Tags: {{#each tags}} {{this}} - {{/each}}</p>
 	</div>

@@ -19,8 +19,8 @@
       },
       "smart-collections": {
         "git": "https://github.com/arunoda/meteor-smart-collections.git",
-        "tag": "v0.3.11",
-        "commit": "630ca031d020f1ae1b272a655773a5beb251f716"
+        "tag": "v0.3.26",
+        "commit": "20e6412b276cdf6a55945002f0cae1ccb5122f40"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
