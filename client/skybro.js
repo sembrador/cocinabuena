@@ -9,7 +9,7 @@ Meteor.autosubscribe(function () {
 });
 
 Deps.autorun(function () {
-document.title = Session.get("pageTitle") + " | Skybro";
+document.title = Session.get("pageTitle") + " | Cocina Buena";
 });
 
 Session.set("searchQuery", "");
@@ -69,7 +69,7 @@ Template.editPost.events({
 		e.preventDefault();
 		if($('#newTag').val() == ""){
 			Session.set("reRender", false);
-			$('.postError').html(Meteor.render(Template.error({Error: "Tag may not be blank"})));
+			$('.postError').html(Meteor.render(Template.error({Error: "Tag no puede estar vacio"})));
 		}else{
 		tags.insert({tag: $('#newTag').val()});
 		Session.set("addingTag", false);
@@ -102,11 +102,11 @@ Template.editPost.events({
 			Session.set("addingTag", false);
 			}else{
 				Session.set("reRender", false);
-				$('.postError').html(Meteor.render(Template.error({Error: "Post body may not be blank"})));
+				$('.postError').html(Meteor.render(Template.error({Error: "Mensaje no puede estar vacio"})));
 			}
 		}else{
 			Session.set("reRender", false);
-			$('.postError').html(Meteor.render(Template.error({Error: "Title may not be blank"})));
+			$('.postError').html(Meteor.render(Template.error({Error: "Titulo no puede estar vacio"})));
 		}
 	}
 });
@@ -184,7 +184,7 @@ Template.onePost.events({
 			Session.set("postingComment", false);
 		}else{
 			Session.set("reRender", false);
-			$('.commentError').html(Meteor.render(Template.error({Error: "Comment may not be blank"})));
+			$('.commentError').html(Meteor.render(Template.error({Error: "Comentario no puede estar vacio"})));
 		}
 	},
 	'click a.deleteComment': function(e){
