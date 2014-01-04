@@ -75,7 +75,7 @@ li span.label
 div.hero-unit
 {
     margin-top: 10px;
-    background: rgba(0, 0, 0, 0.3);
+    background: #000000;
     margin-left: 5%;
     margin-right: 5%;
     height: 400px;
